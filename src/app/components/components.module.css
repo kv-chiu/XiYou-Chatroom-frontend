@@ -1,0 +1,194 @@
+.ChatroomContainer {
+    background-color: #f3f3f3; /* 背景灰色 */
+    border: 1.5px solid #b7b7b7; /* 黑色边框 */
+    border-radius: 11px; /* 圆角 */
+    /*padding: 20px; !* 上下左右边距 *!*/
+    margin: 5% auto; /* 上下外边距，左右自动 */
+    width: 80%; /* 宽度 */
+    height: 80%; /* 高度 */
+    display: grid; /* 使用 Grid 布局 */
+    grid-template-columns: 6% 23% 71%; /* 定义三个列的宽度比例 */
+    overflow: hidden; /* 确保内容不会溢出圆角 */
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.23); /* 阴影效果 */
+}
+
+.ChatroomSidenav {
+    background-color: #eaeaea; /* 背景 */
+    padding-bottom: 20px;
+    display: flex;
+    flex-direction: column-reverse;
+}
+
+.Icons {
+    display: flex;
+    justify-content: center;
+    opacity: 0.5;
+}
+
+.GithubIcon {
+}
+
+.ChatroomSidebar {
+    background-color: #f0f0f0; /* 背景 */
+    padding: 10px; /* 内边距 */
+}
+
+.avatar {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+}
+
+.Chat {
+    display: flex;
+    align-items: center; /* 垂直居中 */
+    padding: 10px; /* 调整间距 */
+    transition: background-color 0.1s; /* 添加渐变动画效果 */
+}
+
+.Chat:hover {
+    background-color: lightgrey; /* 鼠标悬停时的背景色 */
+}
+
+.ChatAvatar {
+    margin-right: 10px; /* 调整 Avatar 和 Preview 之间的间距 */
+}
+
+.ChatPreview {
+    flex-grow: 1; /* 让 ChatPreview 填充剩余空间 */
+}
+
+.ChatInfo {
+    display: flex;
+    flex-direction: column; /* 垂直布局 */
+    height: 100%;
+    justify-content: center;
+}
+
+.ChatName, .RecentMessage {
+    margin: 0; /* 去掉默认的外边距 */
+}
+
+.ChatName {
+    margin-bottom: 4px;
+    font-size: medium;
+}
+
+.RecentMessage {
+    color: #666; /* 灰色字体 */
+    font-size: 85%;
+    opacity: 0.65;
+    margin-bottom: 3px;
+}
+
+.ChatroomChatbox {
+    background-color: #f2f2f2; /* 背景 */
+    border-left: 2px solid #e8e8e8; /* 左边框 */
+    border-right: 2px solid #e8e8e8; /* 右边框 */
+    border-top: none; /* 去除上边框 */
+    border-bottom: none; /* 去除下边框 */
+    display: grid;
+    grid-template-rows: 11% 59% 30%;
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+}
+
+.ChatHeader {
+    border-bottom: 2px solid #eaeaea; /* 边框 */
+    display: flex;
+    padding-top: 15px;
+    padding-left: 15px;
+}
+
+.ChatMessages {
+    border-bottom: 2px solid #eaeaea; /* 边框 */
+    overflow-y: auto; /* 纵向滚动条 */
+    padding-top: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.UserMessageContainer {
+    display: flex;
+    align-items: flex-start; /* 让每个消息从顶部对齐 */
+    flex-direction: row-reverse;
+    margin-bottom: 13px; /* 底部外边距 */
+}
+
+.AssistantMessageContainer {
+    display: flex;
+    align-items: flex-start; /* 让每个消息从顶部对齐 */
+    flex-direction: row;
+    margin-bottom: 13px; /* 底部外边距 */
+}
+
+.UserMessageAvatar {
+    margin-left: 10px;
+}
+
+.AssistantMessageAvatar {
+    margin-right: 10px;
+}
+
+.UserMessageNameContainer {
+    display: inline-flex;
+    flex-direction: column;
+    height: min-content;
+    align-items: flex-end; /* 右侧对齐 */
+}
+
+.AssistantMessageNameContainer {
+    display: inline-flex;
+    flex-direction: column;
+    height: min-content;
+    align-items: flex-start; /* 左侧对齐 */
+}
+
+.UserMessageName,
+.AssistantMessageName {
+    line-height: 1;
+    font-size: smaller;
+    color: grey;
+}
+
+.UserMessageText {
+    line-height: 1.7;
+    float: right; /* 右浮动，使用户消息在右侧 */
+    background-color: #0099ff; /* 天蓝色背景 */
+    color: white; /* 白色字体 */
+    font-size: 15px;
+    padding: 0px 10px;
+    border-radius: 10px; /* 圆角边框 */
+    clear: both; /* 清除浮动 */
+}
+
+/* AssistantMessage 样式 */
+.AssistantMessageText {
+    line-height: 1.7;
+    float: left; /* 左浮动，使助手消息在左侧 */
+    background-color: white; /* 白色背景 */
+    color: black; /* 黑色字体 */
+    font-size: 15px;
+    padding: 0px 10px;
+    border-radius: 10px; /* 圆角边框 */
+    clear: both; /* 清除浮动 */
+}
+
+.ChatInput {
+    height: 100%;
+}
+
+.InputArea {
+    height: 70%;
+    margin-bottom: 5px;
+    margin-left: 5px;
+    margin-right: 15px;
+}
+
+.InputButtons {
+    margin-top: 20px;
+    margin-right: 10px;
+    display: flex;
+    justify-content: flex-end; /* 将按钮推到右侧 */
+}
