@@ -4,7 +4,7 @@
 
 这是一个使用 [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) 启动的 [Next.js](https://nextjs.org/) 项目。
 
-<div style="text-align: center;">
+<div align="center">
 
 [English](README.md) | 简体中文
 
