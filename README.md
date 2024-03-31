@@ -4,9 +4,23 @@
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
+<div style="text-align: center;">
+
+English | [简体中文](README_zh-CN.md)
+
+</div>
+
 ## Getting Started
 
-First, run the development server:
+First, you need to install Node.js. Node.js is a JavaScript runtime that runs on the server side. This project requires Node.js to run.
+
+### Install Node.js
+
+Visit the [Node.js official website](https://nodejs.org/) and download the version that fits your operating system. The website provides installation guides. After installation, you can check if it was successful by running `node -v` in the command line, which should return the current Node.js version.
+
+### Run the Development Server
+
+After installing Node.js, start the development server with the following command:
 
 ```bash
 npm run dev
