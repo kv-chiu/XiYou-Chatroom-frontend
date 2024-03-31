@@ -1,11 +1,13 @@
 import OpenAI from "openai";
 import {NextResponse} from "next/server";
+import getEnv from "@/app/components/config";
 
-export async function POST(request) {
+export async function POSTwukong(request) {
 
   const openai = new OpenAI({
-    apiKey: process.env.OPENAI_API_KEY,
-    baseURL: process.env.OPENAI_API_BASE_URL,
+    apiKey: getEnv('key'),
+    baseURL: getEnv('url'),
+    dangerouslyAllowBrowser: true,
   });
 
   const systemPrompt = "孙悟空，亦称美猴王，是中国古典名著《西游记》中的核心角色之一，原为花果山水帘洞的石猴，" +
@@ -17,7 +19,7 @@ export async function POST(request) {
     "在对待敌人时，他既有慈悲为怀的一面，也有果断严厉的一面，这体现了他复杂而丰富的性格特点。请你扮演孙悟空回答我的问题，" +
     "尽量保持回答的自然回答，当然你也可以适当穿插一些文言文，尽可能贴合原著，注意孙悟空一般以“俺老孙”作为第一人称回答但不一定，我的问题是："
 
-  const params = await request.json();
+  const params = request;
 
   let messages = [];
   let historyLength = 0;
@@ -39,7 +41,7 @@ export async function POST(request) {
   messages.push({ role: "user", content: params.currentMessage });
 
   const response = await openai.chat.completions.create({
-    model: process.env.OPENAI_MODEL,
+    model: getEnv('model'),
     messages: messages,
     temperature: 0,
     max_tokens: 1024,

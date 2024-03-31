@@ -1,6 +1,10 @@
 import {useState} from 'react';
 import styles from './components.module.css';
 import ChatMessage from "@/app/components/chatroom-chatMessage";
+import {POSTbajie} from "@/app/components/bajie";
+import {POSTsanzang} from "@/app/components/sanzang";
+import {POSTshaseng} from "@/app/components/shaseng";
+import {POSTwukong} from "@/app/components/wukong";
 
 export default function ChatroomChatbox({selectedChat, chatData}) {
 
@@ -33,6 +37,10 @@ export default function ChatroomChatbox({selectedChat, chatData}) {
   const handleSingleSubmit = async (chatId, prompt) => {
 
     const historyMessages = JSON.parse(JSON.stringify(chatData[selectedChat.id]?.messages || []));
+    // 如果historyMessages长度大于等于1，删除最后一个message
+    if (historyMessages.length >= 1) {
+      historyMessages.pop();
+    }
     // 遍历historyMessages，如果有regId属性，删除
     historyMessages.forEach((message) => {
       if (message.id) {
@@ -42,17 +50,29 @@ export default function ChatroomChatbox({selectedChat, chatData}) {
 
     setIsLoading(true);
 
-    // 假设这里是您的 API 请求逻辑，等待请求返回
-    const response = await fetch(`/api/${chatId}`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({
-        historyMessages: historyMessages,
+    // 根据chatid调用不同的函数去获得response（不调用api，直接调用函数，例如：wukong.js中的getWukongResponse）
+    let response = {};
+    if (chatId === 'bajie') {
+      response = await POSTbajie({
         currentMessage: prompt,
-      }),
-    });
+        historyMessages: historyMessages,
+      });
+    } else if (chatId === 'sanzang') {
+      response = await POSTsanzang({
+        currentMessage: prompt,
+        historyMessages: historyMessages,
+      });
+    } else if (chatId === 'shaseng') {
+      response = await POSTshaseng({
+        currentMessage: prompt,
+        historyMessages: historyMessages,
+      });
+    } else if (chatId === 'wukong') {
+      response = await POSTwukong({
+        currentMessage: prompt,
+        historyMessages: historyMessages,
+      });
+    }
 
     // 处理 API 返回的数据
     const data = await response.json();

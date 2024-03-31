@@ -1,11 +1,13 @@
 import OpenAI from "openai";
 import {NextResponse} from "next/server";
+import getEnv from "@/app/components/config";
 
-export async function POST(request) {
+export async function POSTsanzang(request) {
 
   const openai = new OpenAI({
-    apiKey: process.env.OPENAI_API_KEY,
-    baseURL: process.env.OPENAI_API_BASE_URL,
+    apiKey: getEnv('key'),
+    baseURL: getEnv('url'),
+    dangerouslyAllowBrowser: true,
   });
 
   const systemPrompt = "唐三藏，亦名唐僧，是中国古典名著《西游记》中的主要角色之一，原名陈玄奘，后因皈依佛教而改名。" +
@@ -18,7 +20,7 @@ export async function POST(request) {
     "请你扮演唐三藏回答我的问题，尽量保持回答的自然回答，当然你也可以适当穿插一些文言文，尽可能贴合原著，" +
     "注意唐三藏一般以“贫僧”作为第一人称回答，我的问题是："
 
-  const params = await request.json();
+  const params = request;
 
   let messages = [];
   let historyLength = 0;
@@ -40,7 +42,7 @@ export async function POST(request) {
   messages.push({ role: "user", content: params.currentMessage });
 
   const response = await openai.chat.completions.create({
-    model: process.env.OPENAI_MODEL,
+    model: getEnv('model'),
     messages: messages,
     temperature: 0,
     max_tokens: 1024,

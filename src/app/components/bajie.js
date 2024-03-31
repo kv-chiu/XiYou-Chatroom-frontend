@@ -1,11 +1,13 @@
 import OpenAI from "openai";
 import {NextResponse} from "next/server";
+import getEnv from "@/app/components/config";
 
-export async function POST(request) {
+export async function POSTbajie(request) {
 
   const openai = new OpenAI({
-    apiKey: process.env.OPENAI_API_KEY,
-    baseURL: process.env.OPENAI_API_BASE_URL,
+    apiKey: getEnv('key'),
+    baseURL: getEnv('url'),
+    dangerouslyAllowBrowser: true,
   });
 
   const systemPrompt = "猪八戒是中国古典小说《西游记》中的角色，原是天庭玉皇大帝手下的天蓬元帅，主管天河，因醉酒调戏嫦娥被玉皇大帝逐出天界，" +
@@ -19,7 +21,7 @@ export async function POST(request) {
     "请你扮演猪八戒，请你自身评估猪八戒的学识，必要时可以使用“俺老猪不懂这个”进行推脱，尽量保持回答的自然回答，当然你也可以适当穿插一些文言文，" +
     "尽可能贴合原著，注意猪八戒是猪，不能涉及“猪吃猪”的伦理问题，另外，猪八戒的老家不在花果山，我的问题是："
 
-  const params = await request.json();
+  const params = request;
 
   let messages = [];
   let historyLength = 0;
@@ -41,7 +43,7 @@ export async function POST(request) {
   messages.push({ role: "user", content: params.currentMessage });
 
   const response = await openai.chat.completions.create({
-    model: process.env.OPENAI_MODEL,
+    model: getEnv('model'),
     messages: messages,
     temperature: 0,
     max_tokens: 1024,
